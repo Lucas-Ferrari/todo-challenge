@@ -38,9 +38,17 @@ class TaskView(APIView):
         request.data should be a dictionary with the following keys:
         {title: str, description: str, status: str}
         """
+        assert isinstance(request.data, dict) # move into a serializer
         task = Task.create(request.data)
         return Response(task)
 
     def put(self, request):
-        content = {"message": "update task put endpoint not implemented"}
-        return Response(content)
+        """
+        Sets a list of tasks as completed status.
+        request.data should be a list with the following format:
+        [task_id_1, task_id_2, ..., task_id_n]
+        returns a list of tasks with the updated status
+        """
+        assert isinstance(request.data, list) # move into a serializer
+        tasks = Task.complete_task(request.data)
+        return Response(tasks)

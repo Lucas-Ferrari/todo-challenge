@@ -38,6 +38,16 @@ class Task(models.Model):
     @classmethod
     def get_all(cls):
         tasks = cls.objects.all()
+        return cls._serialize_tasks(tasks)
+
+    @classmethod
+    def complete_task(cls, tasks_ids):
+        tasks = cls.objects.filter(id__in=tasks_ids)
+        tasks.update(status=Task.Status.DONE)
+        return cls._serialize_tasks(tasks)
+
+    @classmethod
+    def _serialize_tasks(self, tasks):
         return [
             {
                 "id": task.id,
