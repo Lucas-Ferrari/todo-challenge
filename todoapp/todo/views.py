@@ -6,16 +6,26 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from todo.models import Task
 
 class TaskList(APIView):
+    """
+    have to accept no params or datefrom and date to to filter the tasks
+    """
     permission_classes = [IsAuthenticated]
     authentication_classes = [JWTAuthentication]
 
     def get(self, request):
         """
-        Get all tasks
+        Get filtered tasks
         """
-        #TODO: Implement return only task created by user who makes request
-        tasks = Task.get_all()
+        if request.data == {}:
+            return Response(Task.get_all())
+
+        date_from = request.data.get('datefrom', None)
+        date_to = request.data.get('dateto', None)
+        title = request.data.get('title', None)
+        tasks = Task.get_filtered(date_from, date_to, title)
+
         return Response(tasks)
+
 
 class TaskView(APIView):
     permission_classes = [IsAuthenticated]
