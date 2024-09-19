@@ -50,7 +50,7 @@ class TaskView(APIView):
         """
         assert isinstance(request.data, dict) # move into a serializer
         task = Task.create(request.data)
-        return Response(task)
+        return Response(task, status=201)
 
     def put(self, request):
         """

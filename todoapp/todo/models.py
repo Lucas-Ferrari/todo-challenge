@@ -11,7 +11,7 @@ class Task(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
     description = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True, )
+    created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(
         max_length=3,
         choices=Status.choices,
@@ -43,14 +43,11 @@ class Task(models.Model):
 
     @classmethod
     def get_by_id(cls, task_id):
-        task = cls.objects.get(id=task_id)
-        return {
-            "id": task.id,
-            "title": task.title,
-            "description": task.description,
-            "created_at": task.created_at,
-            "status": task.status,
-        }
+        try:
+            task = cls.objects.get(id=task_id)
+            return cls._serialize_task(task)
+        except Task.DoesNotExist:
+            return None
 
     @classmethod
     def get_all(cls):
