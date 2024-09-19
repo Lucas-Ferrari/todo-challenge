@@ -7,7 +7,7 @@
 - Ejecutar el siguiente comando para crear el superusuario que utilizaremos para probar la API:
     ```python manage.py createsuperuser```
 - Una vez completado con exito el comando anterior, ya podemos correr el servidor: ```python manage.py runserver``` y utilizar la api, con la coleccion de postman que se encuentra en el root
-
+- Para ejecutar los tests utilizar el comando ```python manage.py test```
 
 #
 El propósito de esta prueba es conocer tu capacidad para crear una pequeña aplicación funcional en un límite de tiempo. A continuación, encontrarás las funciones, los requisitos y los puntos clave que debés tener en cuenta durante el desarrollo.
