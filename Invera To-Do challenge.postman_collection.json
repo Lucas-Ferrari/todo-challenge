@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "ce64456f-b18d-4c16-b4d8-ed27e6fe45ff",
+		"name": "Invera To-Do challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "9170137"
+	},
+	"item": [
+		{
+			"name": "Autentication",
+			"item": [
+				{
+					"name": "Autenthicate user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"user_test\",\n    \"password\": \"password_test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/token/"
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyNjQ0NzU5OCwiaWF0IjoxNzI2MzYxMTk4LCJqdGkiOiI4NzcwMDJiMzFiMTU0ZTI3OGY2ZTUxZThkN2Q5NGNjZCIsInVzZXJfaWQiOjF9.IBsMSjc9elwwU_NCPAW9JU1EvISXhjTH37Hlr4qRuHk\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/token/refresh/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "Get all tasks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI3MTI5ODY1LCJpYXQiOjE3MjcxMjYyNjUsImp0aSI6IjVlZDMzNjY3ZDZhYjQ3MjBiMWZkNTUwZDg4ODljZTM5IiwidXNlcl9pZCI6Mn0.bjlF9_aFRVW7Kqz-KZDkfxnAF9tBRTJLJ8b-fwBmcS8"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/tasks/list/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get task by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2Nzc4ODM0LCJpYXQiOjE3MjY3NzUyMzQsImp0aSI6IjBlMDRjNjAxODU5ZDQ0ZGFhYTQzYTMwZWMxZjU0NzgyIiwidXNlcl9pZCI6Mn0.KH5b8iB_BuZ8CwT2iaPZI-RD6xax2JDlVto9ytAiswI"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id\": 10}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/tasks/get_by_id/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all tasks filter by title",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2NzgwNjEyLCJpYXQiOjE3MjY3NzcwMTIsImp0aSI6IjI3M2FiNmMyNTRmZDQ1N2Y4MDA5ZTIyYTMzMzBkMWY2IiwidXNlcl9pZCI6Mn0.hU_tZJkgLAUs0lGTnsxLDvH-E44sTkjlbHzyyqHe8vQ"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"title\": \"probar busqueda\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/tasks/list/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all tasks filter by date",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI3MTI5ODY1LCJpYXQiOjE3MjcxMjYyNjUsImp0aSI6IjVlZDMzNjY3ZDZhYjQ3MjBiMWZkNTUwZDg4ODljZTM5IiwidXNlcl9pZCI6Mn0.bjlF9_aFRVW7Kqz-KZDkfxnAF9tBRTJLJ8b-fwBmcS8"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"datefrom\": \"2024-09-10\",\n    \"dateto\": \"2024-09-19\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/tasks/list/"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2Nzc4ODM0LCJpYXQiOjE3MjY3NzUyMzQsImp0aSI6IjBlMDRjNjAxODU5ZDQ0ZGFhYTQzYTMwZWMxZjU0NzgyIiwidXNlcl9pZCI6Mn0.KH5b8iB_BuZ8CwT2iaPZI-RD6xax2JDlVto9ytAiswI"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"probar busqueda\",\n    \"description\": \"lalalalalalalala 2\",\n    \"status\": \"PEN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/tasks/create/"
+					},
+					"response": []
+				},
+				{
+					"name": "Complete tasks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2Nzc4ODM0LCJpYXQiOjE3MjY3NzUyMzQsImp0aSI6IjBlMDRjNjAxODU5ZDQ0ZGFhYTQzYTMwZWMxZjU0NzgyIiwidXNlcl9pZCI6Mn0.KH5b8iB_BuZ8CwT2iaPZI-RD6xax2JDlVto9ytAiswI"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[10]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/tasks/set_complete/"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
